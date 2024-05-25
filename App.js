@@ -7,7 +7,9 @@ import {
   TouchableHighlight,
   Image,
   Alert,
-  ScrollView
+  ScrollView,
+  FlatList,
+  ListItem
 } from "react-native";
 import AntDesign from "@expo/vector-icons/AntDesign";
 
@@ -20,22 +22,54 @@ const makeAlert = () => {
   Alert.alert('aleeert', 'mehh alert ehh')
 }
 
-const Header = () => {
-  return (
-    <Text style={{fontSize: 30}}>Your little list</Text>
-  )
-}
+// const Header = () => {
+//   return (
+//     <Text style={{fontSize: 30}}>Your little list</Text>
+//   )
+// }
  
 const data = new Array(100).fill(null)
 
+const ListItem = ({label}) => {
+  return <Text>{label}</Text>
+}
+
+const Header = () => {
+  return (
+    <Text
+      style={{
+        fontSize: 48,
+      }}>
+      Your Little List
+    </Text>
+  );
+};
+
   return (
     <View style={styles.container}>
-      <ScrollView style={styles.container}>
+      {/* <ScrollView style={styles.container}>
         <Header/>
         {data.map((_, index) => (
           <Text key={index.toString()}>{index + 1}. Blabla</Text>
         ))}
-      </ScrollView>
+
+      </ScrollView> */}
+
+      <View style={styles.container}>
+        <FlatList
+          ListEmptyComponent={
+            <View>
+              <Text>Sorry, no data!!!</Text>
+            </View>
+          }
+          ListHeaderComponent={<Header />}
+          ListFooterComponent={<Header />}
+          data={data}
+          renderItem={({ item, index }) => (
+            <ListItem label={`${index + 1}. Lorem Ipsum`} />
+          )}
+        />
+      </View>
 
       <Text style={styles.basicTitle}>
         Ala <Text style={styles.boldedTitle}>Wu</Text>
