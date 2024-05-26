@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export const useApi = ({ url }) => {
+export const fetcher = ({ url }) => {
   const [data, setData] = useState(null);
   const [isLoading, setLoading] = useState(false);
   const [isError, setError] = useState(false);
