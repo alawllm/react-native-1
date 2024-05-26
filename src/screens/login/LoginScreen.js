@@ -29,7 +29,7 @@ export const LoginScreen = ({ navigation }) => {
 
   const onSubmit = (data) => {
     Alert.alert(JSON.stringify(data));
-    navigation.navigate("characters");
+    navigation.navigate("Characters");
   };
 
   return (

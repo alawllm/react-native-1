@@ -2,5 +2,6 @@ export const Route = {
     LOGIN: 'Login',
     REGISTER: 'Register',
     POSTS: 'Posts',
-    CHARACTERS: 'Characters'
+    CHARACTERS: 'Characters',
+    DASHBOARD: 'Dashboard'
 }

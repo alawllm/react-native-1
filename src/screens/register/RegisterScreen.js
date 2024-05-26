@@ -25,7 +25,7 @@ export const RegisterScreen = ({ navigation }) => {
 
   const onSubmit = (data) => {
     Alert.alert(JSON.stringify(data));
-    navigation.navigate("register");
+    navigation.navigate("Characters");
   };
 
   return (
