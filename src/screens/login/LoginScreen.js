@@ -12,7 +12,7 @@ import { validationSchema } from "./validationSchema";
 //2.password
 //3. confirm password
 
-export const LoginScreen = () => {
+export const LoginScreen = ({ navigation }) => {
   const {
     handleSubmit,
     control,
@@ -29,6 +29,7 @@ export const LoginScreen = () => {
 
   const onSubmit = (data) => {
     Alert.alert(JSON.stringify(data));
+    navigation.navigate("characters");
   };
 
   return (
@@ -67,7 +68,7 @@ export const LoginScreen = () => {
       </View>
       <Button
         onPress={handleSubmit(onSubmit)}
-        label={"Register User"}
+        label={"Login User"}
         disabled={!isValid || isSubmitting}
       />
     </SafeAreaView>

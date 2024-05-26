@@ -8,7 +8,7 @@ import { Button } from "../../shared/components/button";
 
 import { validationSchema } from "./validationSchema";
 
-export const RegisterScreen = () => {
+export const RegisterScreen = ({ navigation }) => {
   const {
     handleSubmit,
     control,
@@ -25,6 +25,7 @@ export const RegisterScreen = () => {
 
   const onSubmit = (data) => {
     Alert.alert(JSON.stringify(data));
+    navigation.navigate("register");
   };
 
   return (
