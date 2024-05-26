@@ -1,14 +1,18 @@
-import { View, Text, StyleSheet, Alert } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+
 import { SafeAreaView } from "react-native-safe-area-context";
+import { Alert } from "react-native";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-
 import { Input } from "../../shared/components/input";
 import { Button } from "../../shared/components/button";
-
 import { validationSchema } from "./validationSchema";
 
-export const RegisterScreen = () => {
+//1.email
+//2.password
+//3. confirm password
+
+export const LoginScreen = () => {
   const {
     handleSubmit,
     control,
@@ -29,24 +33,20 @@ export const RegisterScreen = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.titleContainer}>
-        <Text style={styles.title}>Register your account</Text>
-        <Text style={styles.subtitle}>Enter your information below</Text>
-      </View>
+      <Text style={styles.title}>Login new user</Text>
       <View style={styles.inputsContainer}>
         <Controller
           name="email"
           control={control}
           render={({ field, fieldState: { error } }) => (
             <Input
-              label="Email Address"
-              placeholder="Enter Email Address"
+              placeholder="email"
               value={field.value}
-              onBlur={field.onBlur}
               onChangeText={field.onChange}
               keyboardType="email-address"
               autoCapitalize="none"
-              autoComplete="email"
+              autoCorrect={false}
+              s
               error={error?.message}
             />
           )}
@@ -56,30 +56,11 @@ export const RegisterScreen = () => {
           control={control}
           render={({ field, fieldState: { error } }) => (
             <Input
-              label="Password"
-              placeholder="Enter Password"
+              placeholder="password"
               value={field.value}
-              onBlur={field.onBlur}
               onChangeText={field.onChange}
-              secureTextEntry
-              autoComplete="password"
               error={error?.message}
-            />
-          )}
-        />
-        <Controller
-          name="confirmPassword"
-          control={control}
-          render={({ field, fieldState: { error } }) => (
-            <Input
-              label="Confirm Password"
-              placeholder="Enter Your Password"
-              value={field.value}
-              onBlur={field.onBlur}
-              onChangeText={field.onChange}
               secureTextEntry
-              autoComplete="password"
-              error={error?.message}
             />
           )}
         />
@@ -95,27 +76,14 @@ export const RegisterScreen = () => {
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 24,
-    paddingBottom: 32,
-    paddingHorizontal: 16,
     justifyContent: "space-between",
+    paddingHorizontal: 16,
+    gap: 20,
+    display: "flex",
     flex: 1,
-  },
-  titleContainer: {
-    gap: 8,
   },
   title: {
     fontSize: 24,
-    fontWeight: "medium",
-    color: "#080613",
-  },
-  subtitle: {
-    color: "#A1A1A1",
-    fontSize: 14,
-    fontWeight: "regular",
-  },
-  inputsContainer: {
-    paddingTop: 24,
-    gap: 16,
+    textAlign: "center",
   },
 });
