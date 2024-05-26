@@ -1,12 +1,13 @@
-import { StyleSheet, View } from "react-native";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { StyleSheet, View, Text } from "react-native";
 
 import { CharactersScreen } from "./src/screens";
+import { ApiProvider } from "./src/shared/providers";
 
 export default function App() {
   return (
     <ApiProvider>
       <View style={styles.container}>
+        <Text>Blabla</Text>
         <CharactersScreen />
       </View>
     </ApiProvider>
@@ -18,11 +19,3 @@ const styles = StyleSheet.create({
     paddingTop: 100,
   },
 });
-
-const queryClient = new QueryClient();
-
-const ApiProvider = ({ children }) => {
-  return (
-    <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
-  );
-};
