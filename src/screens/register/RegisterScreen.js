@@ -7,29 +7,68 @@ import {
 } from "react-native";
 
 import { SafeAreaView } from "react-native-safe-area-context";
+import { useState } from "react";
+import { Alert } from "react-native";
 
 //1.email
 //2.password
 //3. confirm password
 
-const Button = () => {
+const Button = ({ onPress, label }) => {
   return (
-    <TouchableOpacity style={styles.containedButton}>
-      <Text>Register User</Text>
+    <TouchableOpacity style={styles.containedButton} onPress={onPress}>
+      <Text>{label}</Text>
     </TouchableOpacity>
   );
 };
 
 export const RegisterScreen = () => {
+  const [formState, setFormState] = useState({
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
+
+  const onSubmit = () => {
+    Alert.alert(JSON.stringify(formState));
+  };
+
+  const setInputValue = (name, newValue) => {
+    setFormState((prevState) => ({
+      ...prevState,
+      [name]: newValue,
+    }));
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.title}>Register new user</Text>
       <View style={styles.inputsContainer}>
-        <TextInput style={styles.input} placeholder="email" />
-        <TextInput style={styles.input} placeholder="password" />
-        <TextInput style={styles.input} placeholder="confirm password" />
+        <TextInput
+          style={styles.input}
+          placeholder="email"
+          value={formState.email}
+          onChange={(value) => setInputValue("email", value)}
+          keyboardType="email-address"
+          autoCapitalize="none"
+          autoCorrect={false}
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="password"
+          value={formState.password}
+          onChange={(value) => setInputValue("password", value)}
+          secureTextEntry
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="confirm password"
+          value={formState.confirmPassword}
+          onChange={(value) => setInputValue("confirmPassword", value)}
+          secureTextEntry
+        />
       </View>
-      <Button />
+      <Button onPress={onSubmit} />
     </SafeAreaView>
   );
 };
@@ -39,6 +78,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     paddingHorizontal: 16,
     gap: 20,
+    display: "flex",
     flex: 1,
   },
   title: {
